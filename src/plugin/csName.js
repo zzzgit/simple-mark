@@ -6,7 +6,7 @@ const plugin = {
 	},
 	render(str, config) {
 		let result = str
-		result = result.replace(/\{\{cs_name_name\}\}/g, config["csName"])
+		result = result.replace(/\{\{cs_name\}\}/g, config["csName"])
 		return result
 	},
 }
