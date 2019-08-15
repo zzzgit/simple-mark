@@ -1,15 +1,10 @@
-const sMarkdown = {
-	compile(segment) {
-		return ""
-	},
-	render(str) {
-		return ""
-	},
-	use(plugin) {
-		plugin.register(this)
-	},
-}
+import markdown from "./markdown"
+import color from "./plugin/color"
+import bold from "./plugin/bold"
+import userName from "./plugin/userName"
+import csName from "./plugin/csName"
 
-module.exports = sMarkdown
+markdown.use(color).use(bold)
+	.use([userName, csName])
 
-
+export default markdown

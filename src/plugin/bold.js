@@ -1,13 +1,17 @@
-const bbb = {
-	register(markdown){
-		//
+const plugin = {
+	name: "bold",
+	type: "bound",
+	affix: "bold",
+	compile(segment) {
+		return `{${this.affix}}${segment}{/${this.affix}}`
 	},
-	compile(segment){
-		return 333
+	render(str) {
+		let result = str
+		result = result.replace(/\{bold\}/g, "<span class='md md_bold'>")
+		result = result.replace(/\{\/bold\}/g, "</span>")
+		return result
 	},
-	render(str){
-		let bbbbb = str.replace(/\$color:red\$(.*)\$color:end/, `<span style="color: red">$1</span>`)
-	}
 }
 
-module.exports = bbb
+export default plugin
+
