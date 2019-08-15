@@ -19,3 +19,5 @@ test
 src
 .rpt2_cache
 .rts2_cache/**
+**/*.js
+!dist

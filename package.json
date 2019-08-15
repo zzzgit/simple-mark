@@ -1,6 +1,6 @@
 {
 	"name": "easy-mark",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "minimal markdown support like mark down",
 	"main": "dist/index.js",
 	"scripts": {
