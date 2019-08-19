@@ -7,7 +7,7 @@ const plugin = {
 	},
 	render(str) {
 		let result = str
-		result = result.replace(/\{bold\}/g, "<span class='md md_bold'>")
+		result = result.replace(/\{bold\}/g, "<span class='md md_bold' style='font-weight: bold'>")
 		result = result.replace(/\{\/bold\}/g, "</span>")
 		return result
 	},

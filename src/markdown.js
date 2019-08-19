@@ -36,8 +36,11 @@ const markdown = {
 			if (!plugin) {
 				throw new Error(`[simple-markdown][use]: the argument passed into 'use' method is not a valid plugin`)
 			}
-			if (!plugin) {
-				throw new Error(`[simple-markdown][use]: the argument passed into 'use' method is not a valid plugin`)
+			if (!plugin.name) {
+				throw new Error(`[simple-markdown][use]: the plugin passed into 'use' method must has a name`, plugin)
+			}
+			if (!plugin.type) {
+				throw new Error(`[simple-markdown][use]: the plugin passed into 'use' method must has a type`, plugin)
 			}
 			if (plugin.beforeRegister) {
 				plugin.beforeRegister(this)
