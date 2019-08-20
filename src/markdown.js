@@ -5,6 +5,7 @@ const markdown = {
 	renderers: {
 		bound: [],
 		replace: [],
+		other: [],
 	},
 	compile(segment, instruction, options) {
 		const compiler = this.compilers[instruction]
@@ -45,9 +46,9 @@ const markdown = {
 			if (plugin.beforeRegister) {
 				plugin.beforeRegister(this)
 			}
-			this.compilers[plugin.name] = plugin.compile.bind(plugin)
+			this.compilers[plugin.name] = (plugin.compile || noop).bind(plugin)
 			const renderers = this.renderers[plugin.type]
-			renderers.push(plugin.render.bind(plugin) || noop)
+			renderers.push((plugin.render || noop).bind(plugin))
 			if (plugin.afterRegister) {
 				plugin.afterRegister(this)
 			}
