@@ -27,6 +27,9 @@ const markdown = {
 		this.renderers.replace.forEach((render)=>{
 			result = render(result, config)
 		})
+		this.renderers.other.forEach((render)=>{
+			result = render(result, config)
+		})
 		return result
 	},
 	use(plugins) {
