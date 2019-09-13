@@ -3,6 +3,7 @@ const noop = str => str
 const markdown = {
 	compilers: {},
 	renderers: {
+		pre: [],
 		bound: [],
 		replace: [],
 		other: [],
@@ -21,6 +22,9 @@ const markdown = {
 			// throw new Error(`[simple-markdown][render]: config must be supplied`)
 		}
 		let result = str || ""
+		this.renderers.pre.forEach((render)=>{
+			result = render(result, config)
+		})
 		this.renderers.bound.forEach((render)=>{
 			result = render(result, config)
 		})
@@ -50,8 +54,12 @@ const markdown = {
 				plugin.beforeRegister(this)
 			}
 			this.compilers[plugin.name] = (plugin.compile || noop).bind(plugin)
-			const renderers = this.renderers[plugin.type]
-			renderers.push((plugin.render || noop).bind(plugin))
+			if (plugin.priority) {
+				this.renderers.pre.push(plugin.render.bind(plugin))
+			} else {
+				const renderers = this.renderers[plugin.type]
+				renderers.push((plugin.render || noop).bind(plugin))
+			}
 			if (plugin.afterRegister) {
 				plugin.afterRegister(this)
 			}

@@ -9,7 +9,7 @@ original = "kkkkk"
 compiled += me.compile(original, "bold")
 console.log(compiled)
 
-original = "jjjjj"
+original = "jjjjj<a>bbbbbbb</a>"
 compiled += me.compile(original, "userName")
 
 console.log(compiled)
